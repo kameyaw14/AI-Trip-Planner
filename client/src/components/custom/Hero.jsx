@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Hero = () => {
   return (
@@ -15,9 +16,11 @@ const Hero = () => {
         consequatur provident.
       </p>
 
-      <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
-        Get Started, It's Free
-      </button>
+      <Link to="/create-trip">
+        <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
+          Get Started, It's Free
+        </button>
+      </Link>
     </div>
   );
 };
