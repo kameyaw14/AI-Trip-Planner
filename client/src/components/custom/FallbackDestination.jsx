@@ -1,4 +1,8 @@
-import { SelectBudgetList, SelectTravelList } from "@/constants/options";
+import {
+  AI_PROMPT,
+  SelectBudgetList,
+  SelectTravelList,
+} from "@/constants/options";
 import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -47,6 +51,13 @@ const FallbackDestination = ({ place, setPlace }) => {
     toast.success("Form is valid, generating trip...");
     console.log("Form Data:", formData);
     // Proceed with generating the trip...
+
+    const FINAL_PROMPT = AI_PROMPT.replace("{location}", formData?.destination)
+      .replace("{totalDays}", formData?.days)
+      .replace("{travellers}", formData?.travellers)
+      .replace("{budget}", formData?.budget);
+
+    alert(FINAL_PROMPT);
   };
 
   useEffect(() => {

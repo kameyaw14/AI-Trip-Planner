@@ -74,3 +74,30 @@ export const SelectBudgetList = [
     budgetRange: "$$$$+",
   },
 ];
+
+export const AI_PROMPT = `Generate a detailed travel plan in JSON format for the following scenario: 
+Location: {location}, 
+Duration: {totalDays} days, 
+Travelers: {travellers}, 
+Budget: {budget}.
+
+Requirements:
+1. Provide a list of recommended hotels, each with:
+   - Hotel Name
+   - Hotel Address
+   - Price (per night)
+   - Hotel Image URL
+   - Geo Coordinates
+   - Rating
+   - Description
+
+2. Suggest a daily itinerary covering {totalDays} days, each day including:
+   - Place Name
+   - Place Details
+   - Place Image URL
+   - Geo Coordinates
+   - Ticket Pricing
+   - Best Time to Visit
+   - Travel Time to/from each location
+
+Output everything in valid JSON format, with clear structure for the hotels list and the daily itinerary plan.`;
