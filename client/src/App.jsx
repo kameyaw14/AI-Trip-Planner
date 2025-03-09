@@ -5,10 +5,12 @@ import CreateTrip from "./pages/CreateTrip";
 import NotFound from "./components/custom/NotFound";
 import Home from "./pages/Home";
 import NavBar from "./components/custom/NavBar";
+import { Toaster } from "react-hot-toast";
 
 const App = () => {
   return (
     <div className="">
+      <Toaster />
       <NavBar />
       <Routes>
         <Route path="/" element={<Home />} />
