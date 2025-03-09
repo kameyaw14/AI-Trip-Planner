@@ -1,3 +1,4 @@
+import { chatSession } from "@/config/aiModel";
 import {
   AI_PROMPT,
   SelectBudgetList,
@@ -31,7 +32,7 @@ const FallbackDestination = ({ place, setPlace }) => {
   };
 
   // Basic form validation and toast notifications.
-  const handleGenerateTrip = () => {
+  const handleGenerateTrip = async () => {
     if (!formData.destination || formData.destination.trim() === "") {
       toast.error("Destination is required.");
       return;
@@ -57,7 +58,10 @@ const FallbackDestination = ({ place, setPlace }) => {
       .replace("{travellers}", formData?.travellers)
       .replace("{budget}", formData?.budget);
 
-    alert(FINAL_PROMPT);
+    // alert(FINAL_PROMPT);
+
+    const result = await chatSession.sendMessage(FINAL_PROMPT);
+    console.log(result?.response?.text());
   };
 
   useEffect(() => {

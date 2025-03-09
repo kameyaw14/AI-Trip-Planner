@@ -86,7 +86,7 @@ Requirements:
    - Hotel Name
    - Hotel Address
    - Price (per night)
-   - Hotel Image URL
+   - Hotel Image URL(use real images)
    - Geo Coordinates
    - Rating
    - Description
@@ -94,7 +94,7 @@ Requirements:
 2. Suggest a daily itinerary covering {totalDays} days, each day including:
    - Place Name
    - Place Details
-   - Place Image URL
+   - Place Image URL(use real images)
    - Geo Coordinates
    - Ticket Pricing
    - Best Time to Visit
