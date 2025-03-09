@@ -1,47 +1,19 @@
-import FallbackDestination from "@/components/custom/FallbackDestination";
 import { SelectBudgetList, SelectTravelList } from "@/constants/options";
-import React, { useState, useEffect } from "react";
-import GooglePlacesAutocomplete from "react-google-places-autocomplete";
+import React, { useEffect, useState } from "react";
 
-const useLoadScript = (src) => {
-  const [loaded, setLoaded] = useState(false);
-
+const FallbackDestination = ({ place, setPlace }) => {
   const [formData, setFormData] = useState([]);
 
-  const handleInputChange = (name, value) => {};
+  const handleInputChange = (name, value) => {
+    setFormData({
+      ...formData,
+      [name]: value,
+    });
+  };
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.src = src;
-    script.async = true;
-    script.onload = () => setLoaded(true);
-    document.body.appendChild(script);
-    return () => {
-      document.body.removeChild(script);
-    };
-  }, [src]);
-
-  return loaded;
-};
-
-const CreateTrip = () => {
-  const [place, setPlace] = useState("");
-  // Get your API key from your environment variables
-  const apiKey = import.meta.VITE_GOOGLE_PLACE_API;
-
-  // If there is no API key, we can show a fallback UI.
-  if (!apiKey) {
-    return <FallbackDestination setPlace={setPlace} place={place} />;
-  }
-
-  // Load the Google script dynamically.
-  const googleScriptLoaded = useLoadScript(
-    `https://maps.googleapis.com/maps/api/js?key=${apiKey}&libraries=places`
-  );
-
-  if (!googleScriptLoaded) {
-    return <div>Loading...</div>;
-  }
+    console.log(formData);
+  }, [formData]);
 
   return (
     <div className="sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10">
@@ -52,31 +24,36 @@ const CreateTrip = () => {
         Lorem ipsum dolor sit amet, consectetur adipisicing elit. Vero officiis
         molestias mollitia quidem? Eos, magni.
       </p>
-
       <div className="mt-20 flex flex-col gap-10">
         <div>
           <h2 className="text-xl my-3 font-medium">
             What is your preferred destination?
           </h2>
-          <GooglePlacesAutocomplete
-            apiKey={apiKey}
-            selectProps={{
-              place,
-              onChange: (input) => {
-                setPlace(input);
-                handleInputChange("destination", input);
-              },
-              placeholder: "Enter your destination",
+          <input
+            type="text"
+            placeholder="Enter your destination"
+            value={place}
+            onChange={(e) => {
+              setPlace(e.target.value);
+              handleInputChange("destination", e.target.value);
             }}
+            className="border border-gray-300 p-2 rounded-md w-full"
           />
+          <p className="mt-2 text-red-500">
+            API key is missing. Google Places functionality is disabled. Please
+            enter your destination manually.
+          </p>
         </div>
+        <div>
+          <div className=" text-xl my-3 font-medium">
+            How many days are you planning the trip?
+          </div>
 
-        <div className=" text-xl my-3 font-medium">
-          How many days are you planning the trip?
           <div>
             <input
               type="number"
-              placeholder="Enter a value"
+              placeholder="Eg. 4 "
+              onChange={(e) => handleInputChange("days", e.target.value)}
               className=" w-full border rounded-md p-2"
             />
           </div>
@@ -89,6 +66,7 @@ const CreateTrip = () => {
             {SelectBudgetList.map((item, index) => (
               <div
                 key={index}
+                onClick={() => handleInputChange("budget", item.title)}
                 className=" p-4 border rounded-lg hover:shadow-md "
               >
                 <h2 className=" text-4xl">{item.icon}</h2>
@@ -107,6 +85,7 @@ const CreateTrip = () => {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5 cursor-pointer">
             {SelectTravelList.map((item, index) => (
               <div
+                onClick={() => handleInputChange("travellers", item.title)}
                 key={index}
                 className=" p-4 border rounded-lg hover:shadow-md "
               >
@@ -128,4 +107,4 @@ const CreateTrip = () => {
   );
 };
 
-export default CreateTrip;
+export default FallbackDestination;

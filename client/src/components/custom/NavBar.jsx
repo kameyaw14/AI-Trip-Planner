@@ -1,13 +1,15 @@
 import { assets } from "@/assets/assets";
 import { Menu, X } from "lucide-react";
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const NavBar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <nav className="p-3 px-5 shadow-sm flex justify-between items-center relative">
-      <div>
+      <div onclick={() => navigate("/")} className="cursor-pointer">
         <img src={assets.logo} alt="Logo" className="h-8 md:h-10" />
       </div>
 
