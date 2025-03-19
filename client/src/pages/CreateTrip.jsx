@@ -1,5 +1,6 @@
 import FallbackDestination from "@/components/custom/FallbackDestination";
 import { SelectBudgetList, SelectTravelList } from "@/constants/options";
+import { useGoogleLogin } from "@react-oauth/google";
 import React, { useState, useEffect } from "react";
 import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
@@ -42,6 +43,11 @@ const CreateTrip = () => {
   if (!googleScriptLoaded) {
     return <div>Loading...</div>;
   }
+
+  const GoogleLogin = useGoogleLogin({
+    onSuccess: (res) => console.log(res),
+    onError: (err) => console.log(err),
+  });
 
   return (
     <div className="sm:px-10 md:px-32 lg:px-56 xl:px-10 px-5 mt-10">

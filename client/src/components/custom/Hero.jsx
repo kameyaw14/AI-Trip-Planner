@@ -15,12 +15,22 @@ const Hero = () => {
         sequi, harum laboriosam quibusdam fugit laborum fuga ab recusandae
         consequatur provident.
       </p>
-
-      <Link to="/create-trip">
+<div className="flex gap-10">
+  <Link to="/create-trip">
         <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
           Get Started, It's Free
         </button>
+        
       </Link>
+
+      <Link to="generated-trips">
+        <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
+          Generated Trips
+        </button>
+        
+      </Link>
+</div>
+      
     </div>
   );
 };
