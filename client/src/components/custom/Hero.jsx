@@ -23,12 +23,7 @@ const Hero = () => {
         
       </Link>
 
-      <Link to="generated-trips">
-        <button className="px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
-          Generated Trips
-        </button>
-        
-      </Link>
+      
 </div>
       
     </div>

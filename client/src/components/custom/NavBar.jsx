@@ -1,17 +1,24 @@
 import { assets } from "@/assets/assets";
+import { AppContextInstance } from "@/contexts/AppContext";
 import { Menu, X } from "lucide-react";
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const NavBar = () => {
+const {app,user,setUser} = AppContextInstance()
+
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
+
+
   return (
     <nav className="p-3 px-5 shadow-sm flex justify-between items-center relative">
-      <div onclick={() => navigate("/")} className="cursor-pointer">
+
+      <div onClick={() => {navigate("/")}} className="cursor-pointer">
         <img src={assets.logo} alt="Logo" className="h-8 md:h-10" />
       </div>
+      
 
       {/* Mobile Menu Toggle */}
       <div className="md:hidden">
@@ -33,9 +40,12 @@ const NavBar = () => {
           md:items-center
         `}
       >
-        <button className="m-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
-          Sign In
-        </button>
+       {! user ? <button className="m-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
+          Sign In 
+        </button> : <Link to={'/generated-trips'}>
+        <button  className="m-2 px-4 py-2 bg-black text-white rounded-lg hover:bg-gray-800">
+          Trips
+        </button></Link>}
       </div>
     </nav>
   );

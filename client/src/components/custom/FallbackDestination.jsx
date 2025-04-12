@@ -115,7 +115,7 @@ const FallbackDestination = ({ place, setPlace }) => {
     // Save the complete generated trip to MongoDB Cloud.
     try {
       const response = await axios.post(
-        "http://localhost:4000/api/generated-trips",
+        import.meta.env.VITE_SERVER_URL + "/api/generated-trips",
         generatedTrip
       );
       console.log("Generated trip saved:", response.data);

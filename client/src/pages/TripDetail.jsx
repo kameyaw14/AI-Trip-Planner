@@ -13,7 +13,7 @@ const TripDetail = () => {
   useEffect(() => {
     const fetchTrip = async () => {
       try {
-        const { data } = await axios.get(`http://localhost:4000/api/generated-trips/${id}`);
+        const { data } = await axios.get(`${import.meta.env.VITE_SERVER_URL}/api/generated-trips/${id}`);
         setTrip(data);
       } catch (error) {
         console.error('Error fetching trip:', error);

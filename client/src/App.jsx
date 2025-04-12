@@ -13,7 +13,7 @@ import TripDetail from "./pages/TripDetail";
 
 const App = () => {
   const clientId = import.meta.env.VITE_GOOGLE_AUTH_CLIENT_ID;
-  console.log(clientId);
+  // console.log(clientId);
 
   return (
     <div className="">
